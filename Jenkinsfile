@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kssc6320/Terraform-Jenkins.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kssc6320/Terraform-jenkins.git']])
             }
         }
         stage('init') {
@@ -33,5 +33,13 @@ pipeline {
                 sh 'terraform plan'
             }
         }
+        
+        stage('apply') {
+            steps {
+                sh ('terraform apply --auto-approve')
+            }
+        }
+        
+        
     }
 }
